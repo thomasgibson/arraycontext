@@ -230,6 +230,9 @@ class LazilyCompilingFunctionCaller:
         pt_dict_of_named_arrays = self.actx.transform_dag(
             pt.make_dict_of_named_arrays(dict_of_named_arrays))
 
+        with open("x.dot", "w") as outf:
+            outf.write(pt.get_dot_graph(pt_dict_of_named_arrays))
+
         pytato_program = pt.generate_loopy(pt_dict_of_named_arrays,
                                            options=lp.Options(
                                                return_dict=True,
